@@ -1,0 +1,39 @@
+
+version: "3"
+services:
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      # default ports to open
+      - 8888:8888/tcp
+      - 8388:8388/tcp
+      - 8388:8388/udp
+      - 8000:8000/tcp
+      # port of specific application you want to go through the VPN
+      - 6789:6789
+    volumes:
+      # location of where the docker-compose file is located
+      - /srv/gluetun:/gluetun
+    environment:
+      # name of VPN provider, in this case mullvad
+      - VPN_SERVICE_PROVIDER=mullvad
+      # type of connection, in this case wireguard
+      - VPN_TYPE=wireguard
+      # wireguard vpn private key
+      # in my case it can be found in /etc/mullvad-vpn/device
+      - WIREGUARD_PRIVATE_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
+      # assigned wireguard address
+      # in my case it can be found in /etc/mullvad-vpn/device
+      - WIREGUARD_ADDRESSES= xx.xxx.xxx.xx/32
+      # country your connection will be based out of
+      - SERVER_COUNTRIES=Netherlands
+      - PUID=1000
+      - PGID=1000
+      - LOG_LEVEL=debug
+    restart: unless-stopped
+

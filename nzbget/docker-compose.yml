@@ -1,0 +1,25 @@
+
+version: "2.1"
+
+services:
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    # used so it will go through my vpn, optional
+    network_mode: container:gluetun
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London  #America/New_York
+      - NZBGET_USER=xxxxxxxxx #optional
+      - NZBGET_PASS=xxxxxxxxx #optional
+    volumes:
+      # /local/path:/container/path
+      # path to config file 
+      - /srv/nzbget/config:/config
+      # path where downloads will be placed
+      - /home/downloads:/downloads #optional
+    # uncomment two lines below if you are not using gluetun as a vpn
+    #ports:
+    #  - 6789:6789
+    restart: unless-stopped

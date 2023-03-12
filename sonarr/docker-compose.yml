@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes: 
+      # /local/filepath:/containerfilepath
+      # config filepath
+      - /srv/sonarr/config:/config
+      # media file location
+      - /mnt:/mnt #optional
+      # where new media is downloaded to
+      - /home/rbrothers/downloads:/downloads #optional
+    ports:
+      - 8989:8989
+    restart: unless-stopped

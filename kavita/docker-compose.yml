@@ -1,0 +1,16 @@
+
+version: '3.2'
+services:
+  kavita:
+    image: kizaing/kavita:latest
+    volumes:
+      # /local/path:/container/path
+      # location where files are stored are stored
+      - /mnt/raiddisk1/books:/books
+      # location where config file is stored
+      - /srv/kavita/config/:/kavita/config
+    ports:
+      # port it will be hosted on
+      - "5000:5000"
+    restart: unless-stopped
+

@@ -1,0 +1,13 @@
+version: "3"
+services:
+  plexautolanguages:
+    image: remirigal/plex-auto-languages:latest
+    environment:
+      # url for plex http://ip.to.comp:port, can also be //0.0.0.0:32400
+      - PLEX_URL=http://192.168.x.xx:32400
+      - PLEX_TOKEN=xxxxxxxxxxxxxxxxxxxx
+      - TZ=Europe/Paris
+    volumes:
+      # /local/path:/containerpath
+      # location to config file
+      - /srv/plex-auto-languange/config:/config

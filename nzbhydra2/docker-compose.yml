@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  nzbhydra2:
+    container_name: nzbhydra2
+    image: cr.hotio.dev/hotio/nzbhydra2
+    ports:
+      # port it will be hosted on
+      - "5076:5076"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      # timezone
+      - TZ=Etc/UTC
+    volumes:
+    # /local/path/:/containerpath
+    # locaiton of config file
+    - /srv/nzbhydra2/config:/config

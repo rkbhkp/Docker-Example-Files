@@ -1,0 +1,20 @@
+
+version: "3.7"
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    environment:
+      - AUDIOBOOKSHELF_UID=99
+      - AUDIOBOOKSHELF_GID=100
+    ports:
+      - 13378:80
+    volumes:
+      # /path/on/local/machine:/path-on-container
+      # location of audiobook storage
+      - /mnt/raiddisk1/audio:/audiobooks
+      # location of book file storage
+      - /mnt/raiddisk1/books:/books
+      # location of config file
+      - /srv/audiobookshelf/config:/config
+      # location for where the metadata will be stored
+      - /srv/audiobookshelf/metadata:/metadata

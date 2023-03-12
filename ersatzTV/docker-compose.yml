@@ -1,0 +1,18 @@
+
+version: "3.8"
+services:
+    ersatztv:
+        image: jasongdove/ersatztv:latest
+        environment:
+            # timezine you want
+            - TZ=America/Chicago
+        ports:
+            # port that it will be on
+            - "8409:8409"
+        volumes:
+            # /local/path:/container/path
+            # configpath:required for eratztv
+            - /srv/ersatzTV/config:/root/.local/share/ersatztv
+            # location of media
+            - /mnt/raiddisk1/:/media
+        restart: unless-stopped
