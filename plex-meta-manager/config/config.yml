@@ -1,0 +1,193 @@
+
+ 
+## This file is a template remove the .template to use the file
+
+libraries:                                      # This is called out once within the config.>
+  Movies:
+    operations:
+    - radarr_add_all: true
+    - assests_for_all: true
+    report_path: /config/movie_report.yml
+    metadata_path:
+    - folder: /path/to/movies                    # This is a local directory on the s>
+    - git: PMM/chart/basic                      # This is a file within the https://github.c>
+      schedule: weekly(tuesday)
+    - git: PMM/chart/imdb                       # This is a file within the https://github.c>
+      schedule: daily
+    - git: PMM/actor
+      schedule: weekly(wednesday)
+    - git: PMM/genre
+      schedule: weekly(thursday)
+    - git: PMM/playlist
+      schedule: weekly(friday)
+    - git: PMM/streaming
+      schedule: weekly(saturday)
+    - git: PMM/studio
+      schedule: weekly(sunday)
+    - git: PMM/year
+      schedule: weekly(tuesday)
+    - git: PMM/movie/decade
+      schedule: weekly(wednesday)
+    - git: PMM/movie/franchise
+      schedule: weekly(thursday)
+    - git: PMM/movie/season
+      schedule: weekly(friday)
+    - git: meisnate12/Holiday
+      schedule: daily
+    overlay_path:
+    - reapply_overlays: true
+    - remove_overlays: false                    # Set this to true to remove all overlays
+    #- file: /path/to/custom/Overlays.yml                 # This is for if you are using a custom file and not one provided on git
+    - git: PMM/overlays/imdb_top_250            # This is a file within the https://github.c>
+      schedule: weekly(sunday)
+    - git: PMM/overlays/streaming
+      schedule: weekly(sunday)
+  TV Shows:
+    operations:
+      sonarr_add_all: true
+    report_path: /config/tv_report.yml
+    metadata_path:
+   # - file: config/TVShows.yml                 # this is for if you have a custom config file that isnt avaiable on the repository
+    - folder: path/to/TV/Shows
+    - git: PMM/chart/basic                      # This is a file within the https://github.c>
+      schedule: weekly(monday)                  #https://www.had2know.org/technology/hsv-rgb>
+    - git: PMM/chart/imdb                       # This is a file within the https://github.c>
+      schedule: weekly(tuesday)
+    - git: PMM/show/decade
+      schedule: weekly(wednesday)
+    - git: PMM/show/network
+      schedule: weekly(thursday)
+    - git: PMM/show/franchise
+      schedule: weekly(friday)
+    - git: PMM/genre
+      schedule: weekly(saturday)
+    - git: PMM/streaming
+      schedule: weekly(sunday)
+    overlay_path:
+    - remove_overlays: false                    # Set this to true to remove all overlays
+    #- file: config/Overlays.yml                 # This is a local file on the system
+    #  schedule: weekly(monday)
+    - git: PMM/overlays/imdb_top_250            # This is a file within the https://github.c>
+      schedule: weekly(tuesday)
+    - git: PMM/overlays/streaming
+      schedule: weekly(wednesday)
+
+playlist_files:
+#- file: config/playlists.yml
+- git: PMM/playlist                             # This is a file within the https://github.c>
+settings:
+  cache: true
+  cache_expiration: 60
+  asset_directory: config/assets
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: false
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: true
+  sync_mode: append
+  minimum_items: 1
+  default_collection_order:
+  delete_below_minimum: true
+  delete_not_scheduled: true
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: false
+  show_filtered: false
+  show_options: false
+  show_missing: true
+  show_missing_assets: true
+  save_report: true
+  tvdb_language: eng
+  ignore_ids:
+  ignore_imdb_ids:
+  item_refresh_delay: 0
+  playlist_sync_to_user: all
+  playlist_report: false
+  verify_ssl: true
+  custom_repo:
+  check_nightly: true
+  show_unconfigured: true
+  playlist_exclude_users:
+webhooks:                                       # Can be individually specified per library >
+  error:
+  version:
+  run_start:
+  run_end:
+  changes:
+  delete:
+plex:                                           # Can be individually specified per library >
+  url: http://192.168.XX.XX:32400
+  token: xxxxxxxxxxxxxxxxxx
+  timeout: 60
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+tmdb:                                           # REQUIRED for the script to run
+  apikey: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  language: en
+#tautulli:                                       # Can be individually specified per library>
+  #url: http://192.168.x.xx:8181
+  #apikey: ################################
+#omdb:
+#  apikey: ########
+#  cache_expiration: 60
+  cache_expiration: 60
+  region:
+mdblist:
+  apikey: xxxxxxxxxxxxxxxxxxxxxxxxx
+  cache_expiration: 60
+#notifiarr:
+#  apikey: ####################################
+#anidb:                                          # Not required for AniDB builders unless yo>
+#  username: ######
+#  password: ######
+radarr:                                         # Can be individually specified per library >
+  url: http://192.168.xx.xx:7878
+  token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  add_missing: false
+  add_existing: false
+  root_folder_path: /path/to/movies/
+  monitor: true
+  availability: announced
+  quality_profile: Any  # change this to the profile type you want it to use
+  tag:
+  search: false
+  radarr_path: plex_path:/path/to/Movies_report.yml
+  upgrade_existing: false
+  plex_path:
+sonarr:                                         # Can be individually specified per library >
+  url: http://192.168.xx.xx:8989
+  token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  add_missing: false
+  add_existing: false
+  root_folder_path: /path/to/TV/
+  monitor: all
+  quality_profile: Any
+  language_profile: English
+  series_type: standard
+  season_folder: true
+  tag:
+  search: false
+  cutoff_search: false
+  sonarr_path:
+  plex_path:
+  upgrade_existing: false
+trakt: # this is needed for many of the lists used on the repository
+  client_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  pin:
+  authorization:
+    # everything below is autofilled by the script
+    access_token: 
+    token_type: 
+    expires_in: 
+    refresh_token: 
+    scope: 
+    created_at: 
+
+
