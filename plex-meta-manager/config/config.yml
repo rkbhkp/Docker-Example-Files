@@ -2,79 +2,115 @@
  
 ## This file is a template remove the .template to use the file
 
-libraries:                                      # This is called out once within the config.>
-  Movies:
-    operations:
-    - radarr_add_all: true
-    - assests_for_all: true
+libraries:         # This is called out once within the config.>
+  Movies:     # These are names of libraries in your Plex
+    
+    remove_overlays: false           # Set this to true to remove all overlays
     report_path: /config/movie_report.yml
-    metadata_path:
-    - folder: /path/to/movies                    # This is a local directory on the s>
-    - git: PMM/chart/basic                      # This is a file within the https://github.c>
-      schedule: weekly(tuesday)
-    - git: PMM/chart/imdb                       # This is a file within the https://github.c>
-      schedule: daily
-    - git: PMM/actor
-      schedule: weekly(wednesday)
-    - git: PMM/genre
-      schedule: weekly(thursday)
-    - git: PMM/playlist
-      schedule: weekly(friday)
-    - git: PMM/streaming
-      schedule: weekly(saturday)
-    - git: PMM/studio
-      schedule: weekly(sunday)
-    - git: PMM/year
-      schedule: weekly(tuesday)
-    - git: PMM/movie/decade
-      schedule: weekly(wednesday)
-    - git: PMM/movie/franchise
-      schedule: weekly(thursday)
-    - git: PMM/movie/season
-      schedule: weekly(friday)
-    - git: meisnate12/Holiday
-      schedule: daily
-    overlay_path:
-    - reapply_overlays: true
-    - remove_overlays: false                    # Set this to true to remove all overlays
-    #- file: /path/to/custom/Overlays.yml                 # This is for if you are using a custom file and not one provided on git
-    - git: PMM/overlays/imdb_top_250            # This is a file within the https://github.c>
-      schedule: weekly(sunday)
-    - git: PMM/overlays/streaming
-      schedule: weekly(sunday)
+    collection_files:
+    - default: basic                 # This is a file within Kometa's defaults folder
+      template_variables:
+        sort_by: random
+        visible_library: true
+        visible_home: true
+        visible_shared: true
+        # add to radarr
+        radarr_add: true
+        # monitor in radarr
+        monitor: true
+        # search in radarr
+        search: true
+    - default: imdb                  # This is a file within Kometa's defaults folder
+      template_variables:
+        sort_by: random
+        radarr_add: true
+        monitor: true
+        search: true
+    - default: tautulli
+      template_variables:
+        use_watched: false
+        list_days_popular: 10
+        list_size_popular: 50
+        sync_mode: sync
+        collection_order: custom
+        visible_library: true
+        visible_home: true
+        visible_shared: true
+    - default: trakt
+      template_variables:
+        sync_mode: sync
+        collection_order: custom
+        visible_library_popular: true
+        visible_home_popular: true
+        visible_shared_popular: true
+        radarr_add: true
+        monitor: true
+        search: true
+    - default: streaming
+      template_variables:
+        sort_by: random
+        visible_library: true
+        visible_home: true
+        visible_shared: true
+    - default: seasonal
+      template_variables:
+        sort_by: random
+        visible_library: true
+        visible_home: true
+        visible_shared: true
+      # see the wiki for how to use local files, folders, URLs, or files from git
+    #overlay_files:
+    #- default: ribbon                # This is a file within Kometa's defaults folder
+        # see the wiki for how to use local files, folders, URLs, or files from git
   TV Shows:
-    operations:
-      sonarr_add_all: true
-    report_path: /config/tv_report.yml
-    metadata_path:
-   # - file: config/TVShows.yml                 # this is for if you have a custom config file that isnt avaiable on the repository
-    - folder: path/to/TV/Shows
-    - git: PMM/chart/basic                      # This is a file within the https://github.c>
-      schedule: weekly(monday)                  #https://www.had2know.org/technology/hsv-rgb>
-    - git: PMM/chart/imdb                       # This is a file within the https://github.c>
-      schedule: weekly(tuesday)
-    - git: PMM/show/decade
-      schedule: weekly(wednesday)
-    - git: PMM/show/network
-      schedule: weekly(thursday)
-    - git: PMM/show/franchise
-      schedule: weekly(friday)
-    - git: PMM/genre
-      schedule: weekly(saturday)
-    - git: PMM/streaming
-      schedule: weekly(sunday)
-    overlay_path:
-    - remove_overlays: false                    # Set this to true to remove all overlays
-    #- file: config/Overlays.yml                 # This is a local file on the system
-    #  schedule: weekly(monday)
-    - git: PMM/overlays/imdb_top_250            # This is a file within the https://github.c>
-      schedule: weekly(tuesday)
-    - git: PMM/overlays/streaming
-      schedule: weekly(wednesday)
-
-playlist_files:
-#- file: config/playlists.yml
-- git: PMM/playlist                             # This is a file within the https://github.c>
+    # operations:
+    #   delete_collections:
+    #     managed: false
+    #     less: 400
+    remove_overlays: false           # Set this to true to remove all overlays
+    report_path: /config/show_report.yml
+    collection_files:
+    - default: basic                 # This is a file within Kometa's defaults folder
+      template_variables:
+        sort_by: random
+        sonarr_add: true
+        monitor: true
+    - default: imdb                  # This is a file within Kometa's defaults folder
+      template_variables:
+        sort_by: random
+        sonarr_add: true
+        monitor: true
+    - default: tautulli
+      template_variables:
+        use_watched: false
+        list_days_popular: 7
+        list_size_popular: 50
+        sync_mode: sync
+        collection_order: custom
+    - default: trakt
+      template_variables:
+        sync_mode: sync
+        collection_order: custom
+        sonarr_add: true
+        monitor: true
+    - default: network
+      template_variables:
+        sort_by: random
+    - default: streaming
+      template_variables:
+        sort_by: random
+        visible_library: true
+        visible_home: true
+        visible_shared: true
+      # see the wiki for how to use local files, folders, URLs, or files from git
+    #overlay_files:
+    #- default: ribbon                # This is a file within Kometa's defaults folder
+      # see the wiki for how to use local files, folders, URLs, or files from git
+#playlist_files:
+#- default: playlist                  # This is a file within Kometa's defaults folder
+#  template_variables:
+#    libraries: Movies, TV Shows      # list of libraries that you want the Kometa Defaults playlists to look at
+  # see the wiki for how to use local files, folders, URLs, or files from git
 settings:
   cache: true
   cache_expiration: 60
