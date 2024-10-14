@@ -1,24 +1,20 @@
-version: "2.1"
 services:
-  plex-meta-manager:
-    image: lscr.io/linuxserver/plex-meta-manager:latest
-    container_name: plex-meta-manager
+  kometa:
+    image: lscr.io/linuxserver/kometa:latest
+    container_name: kometa
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      # location of config file, uses container location not local
-      - PMM_CONFIG=/config/config.yml #optional
-      - PMM_TIME=03:00 #optional
-      - PMM_RUN=False #optional
-      - PMM_TEST=False #optional
-      - PMM_NO_MISSING=False #optional
+      - TZ=America/Chicago
+
+      # time kometa will run
+      - KOMETA_TIME=03:00 #optional
+      # force it to run instead of waiting for specified time
+      - KOMETA_RUN=False #optional
+      # force It to run but don't apply changes to plex
+      - KOMETA_TEST=False #optional
+      - KOMETA_NO_MISSING=False #optional
     volumes:
-      # /local/path:/containerfile
-      # location of config file
-      - /srv/pmm/config:/config
-      # location for files
-      - /mnt:/mnt
+    # location of config file
+      - ~/docker/kometa/config:/config
     restart: unless-stopped
-
-
