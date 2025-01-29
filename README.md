@@ -4,9 +4,12 @@ Example setup files for my current dockers
 
 Current setup includes:
 
+- assetto-free-roam (assetto Corsa freeroam with AI)
 - audiobookshelf (audio book app)
 - bazarr (subtitle downloader)
 - ersatzTV (TV tuner for plex)
+- fivem (GTAV server with fivem)
+- garrysMod (Garrys Mod server)
 - gluetun (VPN manager for containers)
 - immich (google drive replacement, photo collection)
 - nzbget (nzb downloaders, usenet)
@@ -18,12 +21,15 @@ Current setup includes:
 - kometa (previously called plex meta manager) (auto create collections and playlists in plex)
 - lidarr (music)
 - m3u-playlist-proxy (add headers to m3u URLs)
+- minecraft (minecraft server)
 - mylar3 (comic books)
 - sonarr (TV)
 - overseer (movie/show requester)
+- palworld (palworld server)
 - plex (media server)
 - plexRewind (server recap similar to spotify rewind)
 - prowlarr (indexer manager, alternatice to nzbhydra)
 - spotify-to-plex (makes a playlist on plex out of your spotify playlists)
 - streammaster ( video proxy streaming, live TV)
+- valheim (valheim server)
 - zomboid (containerized zomboid server)

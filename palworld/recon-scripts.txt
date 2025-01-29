@@ -1,0 +1,12 @@
+docker exec -it palworld-server rcon-cli
+
+Shutdown {Seconds} {MessageText}
+DoExit
+Broadcast
+KickPlayer {steamID}
+BanPlayer {}
+TeleportToPlayer {}
+TeleportToMe {}
+ShowPlayers
+Info
+Save

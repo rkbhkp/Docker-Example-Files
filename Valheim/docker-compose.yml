@@ -1,0 +1,17 @@
+services:
+  valheim:
+    image: ich777/steamcmd:valheim
+    container_name: Valheim
+    ports:
+      - "2459-2461:2456-2458/udp"
+    environment:
+      - GAME_ID=896660
+      - SRV_NAME=Valheim Docker
+      - WORLD_NAME=Dedicated
+      - SRV_PWD=ChangeMe1!
+      - UID=99
+      - GID=100
+    volumes:
+      - /srv/valheim/config:/serverdata/steamcmd
+      - /srv/valheim/data:/serverdata/serverfiles
+    restart: unless-stopped

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  GarrysMod:
+    image: ich777/steamcmd:garrysmod
+    container_name: GarrysMod
+    ports:
+      - "27016:27015"
+      - "27016:27015/udp"
+    environment:
+      - GAME_ID=4020
+      - GAME_NAME=GameName
+      - GAME_PORT=27016
+      - GAME_PARAMS=-secure +maxplayers 12 +map gm_flatgrass
+      - UID=99
+      - GID=100
+    volumes:
+      - /srv/garrys/steamcmd:/serverdata/steamcmd
+      - /srv/garrys/serverfiles:/serverdata/serverfiles

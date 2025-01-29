@@ -1,0 +1,32 @@
+services:
+   palworld:
+      image: thijsvanloef/palworld-server-docker:latest
+      restart: unless-stopped
+      container_name: palworld-server
+      ports:
+        - 8211:8211/udp
+        - 27015:27015/udp
+        - 127.0.0.1:25575:25575
+      environment:
+         - PUID=1000
+         - PGID=1000
+         - PORT=8211 # Optional but recommended
+         - PLAYERS=16 # Optional but recommended
+         - SERVER_PASSWORD=asdf # Optional but recommended
+         - MULTITHREADING=true
+         - RCON_ENABLED=true
+         - RCON_PORT=25575
+         - TZ=UTC
+         - ADMIN_PASSWORD=ChangeMe20!
+         - COMMUNITY=false  # Enable this if you want your server to show up in the community servers tab, USE WITH SERVER_PASSWORD!
+         - SERVER_NAME=ServerName
+         - DAYTIME_SPEEDRATE=0.25
+         - PAL_SPAWN_NUM_RATE=1.9
+         - PAL_STOMACH_DECREASE_RATE=-1.0
+         - PAL_STAMINA_DECREASE_RATE=-1.0
+         - BUILD_OBJECT_DETERIORATION_DAMAGE_RATE=-1.0
+         - DEATH_PENALTY=0
+         - PAL_EGG_DEFAULT_HATCHING_TIME=1.0
+         - ENABLE_INVADER_ENEMY=false
+      volumes:
+         - ./palworld:/palworld/

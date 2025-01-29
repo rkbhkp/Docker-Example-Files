@@ -1,0 +1,15 @@
+services:
+  assetto-server:
+    image: compujuckel/assettoserver:latest
+    container_name: AssettoServer2
+    ports:
+      - "9600:9600"
+      - "9600:9600/udp"
+      - "8081:8081"
+    volumes:
+      - ./data/:/data
+      - ./data/cfg:/cfg
+    environment:
+      - TZ=Europe/Berlin
+      - ADMIN_PASSWORD=ChangeMe1!
+    restart: always

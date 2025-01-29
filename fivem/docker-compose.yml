@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  FiveM:
+    image: ich777/fivemserver
+    container_name: FiveM
+    ports:
+      - "30110:30110"
+      - "30120:30120"
+      - "30110:30110/udp"
+      - "30120:30120/udp"
+      - "9016:8080"
+    environment:
+      - GAME_CONFIG=server.cfg
+      - SERVER_KEY=xxxxxxxxxxxxxxxxxxxxx
+      - SRV_ADR=https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/
+      - sv_projectName=YourProjectName
+      - sv_projectDesc=YourProjectDescription
+      - UID=99
+      - GID=100
+    volumes:
+      - /srv/fivem/config:/serverdata/serverfiles
+    restart: always
