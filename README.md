@@ -26,3 +26,4 @@ Current setup includes:
 - prowlarr (indexer manager, alternatice to nzbhydra)
 - spotify-to-plex (makes a playlist on plex out of your spotify playlists)
 - streammaster ( video proxy streaming, live TV)
+- zomboid (containerized zomboid server)
