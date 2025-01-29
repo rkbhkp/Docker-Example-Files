@@ -1,4 +1,3 @@
-version: "3"
 services:
   plexautolanguages:
     image: remirigal/plex-auto-languages:latest
