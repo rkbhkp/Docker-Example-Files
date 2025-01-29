@@ -2,7 +2,7 @@ services:
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
     container_name: nzbget
-    # used so it will go through my vpn, optional
+    # used so it will go through my vpn, optional, remove to use outside of gluetun
     network_mode: container:gluetun
     environment:
       - PUID=1000

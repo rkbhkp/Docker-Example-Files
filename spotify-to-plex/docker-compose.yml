@@ -1,0 +1,21 @@
+services:
+  spotify-to-plex:
+    image: cmathews393/spotify-to-plex:latest
+    container_name: spotify-to-plex
+    environment:
+      - SPOTIPY_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - SPOTIPY_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - SPOTIPY_REDIRECT_URI=http://localhost:8888/callback
+      - PLEX_URL=http://192.168.xxx.xxx:32400
+      - PLEX_TOKEN=xxxxxxxxxxxxxxxxxxxx
+      - PLEX_LIBRARY=Music
+    volumes:
+    # path to config folder
+      - ./config:/app/config
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"

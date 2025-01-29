@@ -1,0 +1,7 @@
+services:
+  m3u-playlist-proxy:
+    image: dtankdemp/m3u-playlist-proxy
+    ports:
+    #port that service is ran on.
+    #4912 is what you would use 4123 is what the container uses internally
+      - "4912:4123"

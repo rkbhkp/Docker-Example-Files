@@ -1,0 +1,30 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - TZ=America/Chicago
+      #optional: if you are trying to claim an already made library
+#      - PLEX_CLAIM=claim-xxxxxxxxxxxxxxxxxxxx
+    volumes:
+    # path to config
+      - ~/docker/plex/config:/config
+      # path to library
+      - /mnt:/mnt
+    devices:
+    # igpu passthrough to enable transcoding
+     - /dev/dri:/dev/dri
+    restart: unless-stopped
+    # bellow are all optional
+    deploy:
+      resources:
+      # reserves the following resources for this container
+        reservations:
+          memory: 2G
+      # prevents the container from using more than this
+        limits:
+          memory: 10G

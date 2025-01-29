@@ -1,0 +1,31 @@
+services:
+  zomboid-dedicated-server:
+    image: pepecitron/projectzomboid-server
+    container_name: zomboid-dedicated-server
+    restart: unless-stopped
+    environment:
+      - SERVER_ADMIN_PASSWORD=ChangeMe1!
+      - SERVER_ADMIN_USERNAME=username
+      - SERVER_PORT=16261
+      - SERVER_MAX_PLAYERS=16
+      # optional: name of mods to use 
+      - MOD_NAMES=Swapit;MoreDescriptionForTraits4166;RainWash;ScrapGuns;ScrapArmor;ScrapWeapons;TheWrokshop;MapLegendUI;lgd_antibodies;TchernoLib;modoptions;errorMagnifier;BB_Utils;AquatsarYachtClub;tsarslib;amclub;SkillRecoveryJournal;DylansTiles;ATA_Bus;FRUsedCars;TMC_TrueActions;BetterSortCC;Brita_2;Brita;MonkeysStartScenarioBase;MonkeysStartScenarioRV;ToadTraits;RV_Interior_MP;UndeadSurvivor;autosartrailers;BB_CommonSense;OutTheWindow;P4HasBeenRead;TheStar;BB_Bicycles;ExpandedHelicopterEvents
+      # optional: mod ids, must be in the same order as their respective names
+      - MOD_WORKSHOP_IDS=2366717227;2685168362;2657661246;2125659488;2658619264;2122265954;2680473910;2710167561;2392676812;2986578314;2169435993;2896041179;2850135071;2392987599;2392709985;2778576730;2503622437;2599752664;2592358528;1510950729;2487022075;2313387159;2460154811;2200148440;2843290992;2843308688;1299328280;2822286426;2713921292;2282429356;2875848298;2659216714;2544353492;2619072426;2988491347;2458631365
+      - SERVER_PUBLIC=true
+      - SERVER_NAME=SampleName
+      - SERVER_PUBLIC_NAME=SampleName
+      - SERVER_PASSWORD=ChangeMe2!
+      - SERVER_UDP_PORT=16262
+      - RCON_PORT=27015
+      - RCON_PASSWORD=ChangeMe3!
+    ports:
+      # Rcon port
+      - 27015:27015
+    # ports to open on your router to be publicly available
+      - 16261:16261/udp
+      - 16262:16262/udp
+    volumes:
+    # paths to files
+      - ./data/server-file:/data/server-file
+      - ./data/config:/data/config

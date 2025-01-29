@@ -1,0 +1,20 @@
+services:
+  streammaster:
+    image: senexcrenshaw/streammaster:latest
+    container_name: streammaster
+    ports:
+      - 7095:7095
+    environment:
+      PUID: 1000
+      PGID: 1000
+      POSTGRES_USER: postgres # Default
+      POSTGRES_PASSWORD: sm123 # Default
+      PGDATA: /config/DB # Default
+      POSTGRES_HOST: 127.0.0.1 # Default
+      POSTGRES_DB: StreamMaster # Default
+    restart: unless-stopped
+    volumes:
+      # path to config folder
+      - ~/docker/streammaster/config:/config
+      # path where logo files will be stored
+      - ~/docker/streammaster/tv-logos:/config/tv-logos

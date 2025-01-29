@@ -1,0 +1,18 @@
+version: '3'
+services:
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - LOG_LEVEL=debug
+      - TZ=Etc/UTC
+      - PORT=5055 #optional
+
+    ports:
+      - 5055:5055
+    volumes:
+    # path to config folder
+      - /srv/overseerr/config:/app/config
+    restart: unless-stopped

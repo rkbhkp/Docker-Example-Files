@@ -1,0 +1,14 @@
+services:
+  plex-rewind:
+    image: ghcr.io/raunot/plex-rewind:latest # :develop for the latest development version
+    container_name: plex-rewind
+    environment:
+      - NEXTAUTH_SECRET="QiLewwNZrGHKIxbdD380TVfbTCWy6qLRlvDTGTaXiEY=" # (required) used to encrypt auth JWT token, generate one with `openssl rand -base64 32`
+      - NEXTAUTH_URL=http://192.168.xxx.xxx:8383 # (required) change to your domain if you are exposing the app to the internet
+      - NEXT_PUBLIC_SITE_URL=http://192.168.xxx.xxx:8383 # (required) change to your domain if you are exposing the app to the internet
+    volumes:
+    # path for config
+      - ./config:/app/config
+    ports:
+      - 8383:8383
+    restart: unless-stopped

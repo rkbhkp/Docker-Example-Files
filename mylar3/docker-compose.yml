@@ -1,0 +1,15 @@
+services:
+  mylar3:
+    image: linuxserver/mylar3
+    container_name: mylar3
+    environment:
+      - PUID=1000               # Adjust for your user ID
+      - PGID=1000               # Adjust for your group ID
+      - TZ=America/Chicago      # Set your time zone
+    volumes:
+      - ~/docker/mylar3/config:/config   # Path to store configuration data
+      - /mnt/md1/downloads:/downloads   # Path to store downloaded manga
+      - /mnt/md1/manga:/comics         # Path to store processed comics/manga
+    ports:
+      - 8090:8090               # Expose port 8090 for the web UI
+    restart: unless-stopped
