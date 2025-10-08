@@ -1,0 +1,24 @@
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    ports:
+      - "25566:25565"
+    environment:
+#      LEVEL: "uhc_map2"
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      TZ: "America/Chicago"
+      # Auto-download plugins
+      SPIGET_RESOURCES: "102507,28140,81534,84278"  # UhcCore, LuckPerms, chunky, chunkyborders
+      # Make yourself admin in-game without using the host
+      OPS: |
+        player1
+      # (Optional) give everyone the compass permission automatically
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "ChangeMe1!"
+      RCON_CMDS_STARTUP: |
+        lp group default permission set compassradar.player true
+    volumes:
+      - ./data:/data
+      - ./plugins:/plugins:ro
+    restart: unless-stopped

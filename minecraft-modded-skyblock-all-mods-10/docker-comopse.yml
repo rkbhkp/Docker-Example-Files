@@ -1,0 +1,39 @@
+services:
+  mc:
+    image: itzg/minecraft-server:java21
+    container_name: minecraft-atm10-skyblock
+    restart: on-failure:5
+    stdin_open: true
+    tty: true
+    ports:
+      - "25567:25565"
+
+    # -------- persistent data --------
+    volumes:
+      - ./data:/data
+
+    # -------- server settings --------
+    environment:
+      EULA: "TRUE"
+
+      # Use the CurseForge installer for All The Mods 10: To the Sky
+      TYPE: AUTO_CURSEFORGE
+      CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10-sky"
+      # Optionally pin an exact file with CF_FILE_ID for reproducible installs
+      # CF_FILE_ID: "1234567"
+      # API key for CurseForge
+      CF_API_KEY: "enter-key-here"   # keep the key in a .env file (avoid leaking it)
+      CF_FORCE_SYNCHRONIZE: "true"
+
+      # --- JVM / gameplay bits ---
+      MEMORY: 12G
+      USE_AIKAR_FLAGS: "true"
+      OVERRIDE_SERVER_PROPERTIES: "true"
+      LEVEL: "atm10-skyblock"
+      # Let the pack choose appropriate LEVEL_TYPE (To the Sky will set its own world type)
+      MAX_TICK_TIME: "-1"
+      ALLOW_FLIGHT: "true"
+      SPAWN_PROTECTION: 0
+      MOTD: "ATM10 Sky"
+      # Admins:
+      OPS: "player1"
