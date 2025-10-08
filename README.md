@@ -4,6 +4,7 @@ Example setup files for my current dockers
 
 Current setup includes:
 
+- agregarr (alternative to kometa, has a UI instead of being all config files)
 - assetto-free-roam (assetto Corsa freeroam with AI)
 - audiobookshelf (audio book app)
 - bazarr (subtitle downloader)
@@ -12,6 +13,7 @@ Current setup includes:
 - garrysMod (Garrys Mod server)
 - gluetun (VPN manager for containers)
 - immich (google drive replacement, photo collection)
+- immichProxy (port forward this app instead of immich to safely share images with people)
 - nzbget (nzb downloaders, usenet)
 - plex-auto-languanges (pal) (auto update subtitles and languages for entire TV series when one is changed)
 - radarr (movies)
@@ -22,7 +24,11 @@ Current setup includes:
 - lidarr (music)
 - m3u-playlist-proxy (add headers to m3u URLs)
 - minecraft (minecraft server)
+- minecraft-modded-better-mc (mc server with the mod Better MC)
+- minecraft-modded-skyblock-all-mod-10 (mc server with the mod Skybloc All Mods 10)
+- minecraft-vanilla-uhc-server (vanilla mc server that is UHC PVP round based game, restart the server after the winner to reset)
 - mylar3 (comic books)
+- nginx-proxy-manager (web interface for managing NGINX reverse proxies)
 - sonarr (TV)
 - overseer (movie/show requester)
 - palworld (palworld server)

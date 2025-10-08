@@ -1,0 +1,17 @@
+services:
+  immich-public-proxy:
+    image: alangrainger/immich-public-proxy:latest
+    container_name: immich-public-proxy
+    restart: on-failure:5
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config.json:/app/config.json:ro
+    environment:
+      - IMMICH_URL=http://192.168.0.xxx:2283
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/share/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s

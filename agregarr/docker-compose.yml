@@ -1,0 +1,9 @@
+services:
+  agregarr:
+    image: agregarr/agregarr:latest
+    container_name: agregarr
+    volumes:
+      - ./config:/app/config
+    ports:
+      - 7171:7171
+    restart: unless-stopped
